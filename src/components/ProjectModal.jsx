@@ -1,60 +1,99 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, ExternalLink, Github } from 'lucide-react';
 
-function ProjectModal({ project, onClose, isDarkMode }) {
+const ProjectModal = ({ project, onClose, isDarkMode }) => {
   if (!project) return null;
 
-  const modalBgClass = isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200';
-  const titleColorClass = isDarkMode ? 'text-indigo-400' : 'text-blue-600';
-  const textColorClass = isDarkMode ? 'text-gray-300' : 'text-gray-700';
-  const closeButtonColorClass = isDarkMode ? 'text-gray-400 hover:text-gray-100' : 'text-gray-600 hover:text-gray-900';
-  const techTagBgClass = isDarkMode ? 'bg-indigo-700 text-indigo-100' : 'bg-blue-200 text-blue-800';
-  const primaryButtonClass = isDarkMode ? 'bg-indigo-600 hover:bg-indigo-700 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white';
-  const secondaryButtonClass = isDarkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-100' : 'bg-gray-300 hover:bg-gray-400 text-gray-800';
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [onClose]);
+
+  useEffect(() => {
+    document.body.style.overflow = project ? 'hidden' : 'unset';
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [project]);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 animate-fade-in">
-      <div className={`rounded-xl shadow-2xl p-6 md:p-8 max-w-2xl w-full relative border ${modalBgClass} animate-slide-up-fade-in`}>
-        <button
+    <AnimatePresence>
+      {project && (
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1000] backdrop-blur-sm"
           onClick={onClose}
-          className={`absolute top-4 right-4 text-3xl font-bold transition-colors duration-200 ${closeButtonColorClass}`}
-          aria-label="Close modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
-          &times;
-        </button>
-        <h3 className={`text-3xl font-bold mb-4 ${titleColorClass}`}>{project.title}</h3>
-        <p className={`text-lg mb-6 ${textColorClass}`}>{project.fullDescription || project.description}</p>
-        <div className="flex flex-wrap gap-3 mb-6">
-          {project.technologies && project.technologies.map((tech, index) => (
-            <span key={index} className={`text-sm px-3 py-1 rounded-full ${techTagBgClass}`}>
-              {tech}
-            </span>
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-4">
-          {project.liveLink && (
-            <a
-              href={project.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-block px-6 py-2 rounded-lg text-md font-semibold shadow-md transition-colors duration-300 transform hover:scale-105 ${primaryButtonClass}`}
+          <motion.div
+            className="glass-effect rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 sm:p-8"
+            onClick={(e) => e.stopPropagation()}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.button
+              onClick={onClose}
+              className="absolute top-4 right-4 p-2 rounded-full text-slate-500 dark:text-slate-400 hover:text-accent-light dark:hover:text-accent-dark hover:bg-slate-200 dark:hover:bg-slate-700"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
-              Live Demo
-            </a>
-          )}
-          {project.githubLink && (
-            <a
-              href={project.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-block px-6 py-2 rounded-lg text-md font-semibold shadow-md transition-colors duration-300 transform hover:scale-105 ${secondaryButtonClass}`}
-            >
-              GitHub Repo
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
+              <X size={24} />
+            </motion.button>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-accent-light dark:text-accent-dark">{project.title}</h2>
+            <div className="mb-6">
+              <h4 className="text-sm font-semibold uppercase mb-2 text-slate-500 dark:text-slate-400">Technologies Used:</h4>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech, i) => (
+                  <motion.span
+                    key={i}
+                    className="px-3 py-1.5 rounded-md text-xs font-medium bg-slate-200 dark:bg-slate-700 text-secondary-light dark:text-secondary-dark"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+            <div className="mb-6">
+              <h4 className="text-sm font-semibold uppercase mb-2 text-slate-500 dark:text-slate-400">Full Description:</h4>
+              <p className="text-base text-slate-600 dark:text-slate-300 whitespace-pre-wrap">{project.fullDescription}</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              {project.liveLink && (
+                <motion.a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium bg-slate-200 dark:bg-slate-700 text-accent-light dark:text-accent-dark hover:bg-accent-light dark:hover:bg-accent-dark hover:text-white"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Live Demo <ExternalLink size={16} className="ml-2" />
+                </motion.a>
+              )}
+              {project.githubLink && (
+                <motion.a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium bg-slate-200 dark:bg-slate-700 text-accent-light dark:text-accent-dark hover:bg-accent-light dark:hover:bg-accent-dark hover:text-white"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  GitHub Repo <Github size={16} className="ml-2" />
+                </motion.a>
+              )}
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
-}
+};
 
 export default ProjectModal;

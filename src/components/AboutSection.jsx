@@ -1,41 +1,59 @@
-import React from 'react';
-import NavLink from './NavLink'; // Assuming you have NavLink and ThemeToggle
-import ThemeToggle from './ThemeToggle';
-// import { motion } from 'framer-motion'; // For more advanced animations if you want to use it
+import { motion } from 'framer-motion';
+import SectionTitle from './SectionTitle';
 
-function AboutSection({ isDarkMode, useScrollAnimation }) {
-  const [aboutRef, aboutIsVisible] = useScrollAnimation();
-
-  const sectionBgClass = isDarkMode ? 'bg-gray-900' : 'bg-white';
-  const headingColorClass = isDarkMode ? 'text-indigo-400' : 'text-blue-600'; // More vibrant heading
-  const textColorClass = isDarkMode ? 'text-gray-300' : 'text-gray-700';
-  const highlightColorClass = isDarkMode ? 'text-indigo-300' : 'text-blue-500'; // For highlighted text
-
+const AboutSection = ({ isDarkMode }) => {
   return (
-    <section
+    <motion.section
       id="about"
-      ref={aboutRef}
-      className={`py-16 md:py-24 p-4 transition-opacity duration-700 ${aboutIsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} ${sectionBgClass}`}
+      className="py-16 md:py-24 bg-slate-100 dark:bg-slate-900"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
     >
-      <div className="container mx-auto text-center max-w-4xl"> {/* Increased max-width for better readability */}
-        <h2 className={`text-4xl md:text-5xl font-extrabold mb-8 ${headingColorClass} tracking-tight`}>
-          A Bit About Me:
-        </h2>
-        <p className={`text-lg md:text-xl leading-relaxed mb-6 ${textColorClass}`}>
-          Hello! I'm <strong className={highlightColorClass}>Akhand Pratap Singh</strong>, a highly enthusiastic and dedicated Frontend Developer from India, eager to transform innovative ideas into seamless and captivating web experiences. My journey into web development started with a genuine fascination for how digital interfaces come to life, quickly evolving into a passion for crafting user-centric designs and robust code.
-        </p>
-        <p className={`text-lg md:text-xl leading-relaxed mb-6 ${textColorClass}`}>
-          As a fresher in the professional landscape, I bring a fresh perspective backed by a <strong className={highlightColorClass}>solid foundation</strong> in modern web technologies including **HTML5, CSS3, JavaScript (ES6+), and React.js**. My hands-on approach has led me to build several impactful projects, demonstrating my ability to create responsive, interactive, and visually appealing web applications from concept to deployment.
-        </p>
-        <p className={`text-lg md:text-xl leading-relaxed ${textColorClass}`}>
-          I thrive on learning and continuously hone my skills, always exploring the latest trends and best practices in UI/UX and frontend performance. I'm proficient with essential developer tools like **Git, VS Code, and Chrome DevTools**, and I truly believe in the power of collaborative problem-solving. My goal is to join a dynamic team where I can contribute my evolving expertise, embrace new challenges, and grow into a top-tier developer, creating digital solutions that truly resonate with users.
-        </p>
-
-        {/* Optional: Add a call to action or a small decorative element */}
-        {/* You could add a button here to "View My Projects" or "Download Resume" */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionTitle title="About Me" subtitle="My journey as a frontend developer." isDarkMode={isDarkMode} />
+        <div className="flex flex-col lg:flex-row items-center lg:space-x-12">
+          <motion.div
+            className="w-full lg:w-1/3 mb-8 lg:mb-0"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="glass-effect rounded-xl shadow-2xl overflow-hidden p-1.5">
+              <img
+                src="/assets/profile.jpg"
+                alt="Your Name"
+                className="w-full h-auto rounded-lg object-cover"
+                onError={(e) => { e.target.src = `https://placehold.co/400x400/${isDarkMode ? '1E293B/94A3B8' : 'F1F5F9/64748B'}?text=Error&font=Inter`; }}
+              />
+            </div>
+          </motion.div>
+          <motion.div
+            className="w-full lg:w-2/3 glass-effect p-6 sm:p-8 rounded-xl"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className="text-2xl font-semibold mb-4 text-accent-light dark:text-accent-dark">
+              Hello! I'm Akhand.
+            </h3>
+            <p className="text-lg text-slate-700 dark:text-slate-300 mb-4">
+              I'm a passionate Frontend Developer specializing in creating intuitive and visually stunning web applications. My journey began with a love for blending design and code, which has evolved into expertise in modern frameworks like React and Next.js.
+            </p>
+            <p className="text-lg text-slate-700 dark:text-slate-300 mb-4">
+              I excel at turning complex challenges into elegant solutions, leveraging <span className="text-secondary-light dark:text-secondary-dark">React, TypeScript, and Tailwind CSS</span> to build performant and accessible interfaces. I'm constantly exploring new tools and trends to stay at the forefront of web development.
+            </p>
+            <p className="text-lg text-slate-700 dark:text-slate-300">
+              Outside of coding, I enjoy contributing to open-source projects, experimenting with UI/UX design, and sipping coffee while ideating my next big project.
+            </p>
+          </motion.div>
+        </div>
       </div>
-    </section>
+    </motion.section>
   );
-}
+};
 
 export default AboutSection;

@@ -1,22 +1,40 @@
-import React from 'react';
+import { motion } from 'framer-motion';
+import { ChevronUp } from 'lucide-react';
 
-function Footer({ isDarkMode }) {
-  const footerBgClass = isDarkMode ? 'bg-gray-900 text-gray-400 border-t border-gray-800' : 'bg-gray-200 text-gray-600 border-t border-gray-300';
-  const linkColorClass = isDarkMode ? 'text-indigo-400' : 'text-blue-600';
+const scrollToSection = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+const Footer = ({ isDarkMode }) => {
+  const year = new Date().getFullYear();
 
   return (
-    <footer className={`py-8 text-center text-sm transition-colors duration-300 ${footerBgClass}`}>
-      <div className="container mx-auto">
-        <p>&copy; {new Date().getFullYear()} Akhand Pratap Singh. All rights reserved.</p>
-        <p className="mt-2">Built with React & Tailwind CSS</p>
-      </div>
-      <p className="mt-1">
-        <a href="https://github.com/akhandpratapsingh" target="_blank" rel="noopener noreferrer" className={`${linkColorClass} hover:underline`}>
-          Designed & Developed by Akhand Pratap Singh
-        </a>
+    <motion.footer
+      className="py-8 text-center bg-slate-100 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      <p className="text-sm text-slate-500 dark:text-slate-400">
+        © {year} Akhand. All rights reserved.
       </p>
-    </footer>
+      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+        Built with <span className="text-red-500">♥</span> using React & Tailwind CSS.
+      </p>
+      <motion.button
+        onClick={() => scrollToSection('hero')}
+        className="mt-4 mx-auto p-2 rounded-full text-slate-500 dark:text-slate-400 hover:text-accent-light dark:hover:text-accent-dark bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <ChevronUp size={20} />
+      </motion.button>
+    </motion.footer>
   );
-}
+};
 
 export default Footer;

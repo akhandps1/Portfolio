@@ -1,51 +1,66 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
-function CustomCursor({ isDarkMode }) {
-  const [cursorX, setCursorX] = useState(0);
-  const [cursorY, setCursorY] = useState(0);
-  const cursorRef = useRef(null);
+const CustomCursor = ({ isDarkMode }) => {
+  const cursorDotRef = useRef(null);
+  const cursorOutlineRef = useRef(null);
 
   useEffect(() => {
-    const cursor = cursorRef.current;
-    if (!cursor) return;
-
-    let mouseX = 0, mouseY = 0;
-    let cursorActualX = 0, cursorActualY = 0;
-
-    const animateCursor = () => {
-      cursorActualX += (mouseX - cursorActualX) * 0.1;
-      cursorActualY += (mouseY - cursorActualY) * 0.1;
-
-      cursor.style.left = `${cursorActualX}px`;
-      cursor.style.top = `${cursorActualY}px`;
-
-      requestAnimationFrame(animateCursor);
-    };
-
     const moveCursor = (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      setCursorX(e.clientX); // Update state for immediate visual effect
-      setCursorY(e.clientY); // Update state for immediate visual effect
+      const { clientX: posX, clientY: posY } = e;
+      if (cursorDotRef.current) {
+        cursorDotRef.current.style.left = `${posX}px`;
+        cursorDotRef.current.style.top = `${posY}px`;
+      }
+      if (cursorOutlineRef.current) {
+        cursorOutlineRef.current.animate({
+          left: `${posX}px`,
+          top: `${posY}px`
+        }, { duration: 200, fill: 'forwards' });
+      }
     };
 
-    window.addEventListener('mousemove', moveCursor);
-    animateCursor(); // Start the animation loop
+    const hideCursor = () => {
+      if (cursorDotRef.current) cursorDotRef.current.style.opacity = '0';
+      if (cursorOutlineRef.current) cursorOutlineRef.current.style.opacity = '0';
+    };
+
+    const showCursor = () => {
+      if (cursorDotRef.current) cursorDotRef.current.style.opacity = '1';
+      if (cursorOutlineRef.current) cursorOutlineRef.current.style.opacity = '1';
+    };
+
+    if (!('ontouchstart' in window)) {
+      document.addEventListener('mousemove', moveCursor);
+      document.addEventListener('mouseleave', hideCursor);
+      document.addEventListener('mouseenter', showCursor);
+    }
 
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
+      document.removeEventListener('mousemove', moveCursor);
+      document.removeEventListener('mouseleave', hideCursor);
+      document.removeEventListener('mouseenter', showCursor);
     };
-  }, []); // Empty dependency array means this runs once on mount
-
-  const cursorColorClass = isDarkMode ? 'bg-indigo-400' : 'bg-blue-600';
+  }, []);
 
   return (
-    <div
-      ref={cursorRef}
-      className={`fixed z-50 pointer-events-none w-6 h-6 rounded-full mix-blend-screen opacity-75 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-100 ease-out shadow-lg ${cursorColorClass}`}
-      style={{ left: cursorX, top: cursorY }}
-    ></div>
+    <>
+      <motion.div
+        ref={cursorDotRef}
+        className={`fixed w-3 h-3 rounded-full pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2 ${isDarkMode ? 'bg-accent-dark' : 'bg-accent-light'}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      />
+      <motion.div
+        ref={cursorOutlineRef}
+        className={`fixed w-8 h-8 rounded-full pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2 border-2 ${isDarkMode ? 'border-secondary-dark' : 'border-secondary-light'}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 0.3 }}
+      />
+    </>
   );
-}
+};
 
 export default CustomCursor;
