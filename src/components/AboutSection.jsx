@@ -12,7 +12,7 @@ const AboutSection = ({ isDarkMode }) => {
       transition={{ duration: 0.6 }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle title="About Me" subtitle="My journey as a frontend developer." isDarkMode={isDarkMode} />
+        <SectionTitle title="About Me" subtitle="My journey as a frontend developer" isDarkMode={isDarkMode} />
         <div className="flex flex-col lg:flex-row items-center lg:space-x-12">
           <motion.div
             className="w-full lg:w-1/3 mb-8 lg:mb-0"
@@ -23,7 +23,7 @@ const AboutSection = ({ isDarkMode }) => {
           >
             <div className="glass-effect rounded-xl shadow-2xl overflow-hidden p-1.5">
               <img
-                src="/assets/profile.jpg"
+                src="src/assets/profile.jpg"
                 alt="Your Name"
                 className="w-full h-auto rounded-lg object-cover"
                 onError={(e) => { e.target.src = `https://placehold.co/400x400/${isDarkMode ? '1E293B/94A3B8' : 'F1F5F9/64748B'}?text=Error&font=Inter`; }}
