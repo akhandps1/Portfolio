@@ -51,18 +51,60 @@ const HeroSection = ({ isDarkMode }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
+      {/* Enhanced Background */}
       <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Gradient Background Layer */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-accent-light to-secondary-light dark:from-accent-dark dark:to-secondary-dark rounded-full opacity-20 filter blur-2xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
-          transition={{ duration: 3, repeat: Infinity }}
+          className="absolute inset-0 bg-gradient-to-br from-accent-light/10 via-secondary-light/5 to-transparent dark:from-accent-dark/10 dark:via-secondary-dark/5 dark:to-transparent"
+          animate={{
+            background: isDarkMode
+              ? ['linear-gradient(135deg, rgba(100, 50, 200, 0.1), rgba(0, 0, 0, 0.05), transparent)',
+                 'linear-gradient(135deg, rgba(100, 50, 200, 0.15), rgba(0, 0, 0, 0.1), transparent)']
+              : ['linear-gradient(135deg, rgba(255, 100, 100, 0.1), rgba(255, 255, 255, 0.05), transparent)',
+                 'linear-gradient(135deg, rgba(255, 100, 100, 0.15), rgba(255, 255, 255, 0.1), transparent)'],
+          }}
+          transition={{ duration: 5, repeat: Infinity, repeatType: 'reverse' }}
+        />
+        {/* Floating Orbs with Enhanced Animation */}
+        <motion.div
+          className="absolute top-1/5 left-1/5 w-48 h-48 bg-gradient-to-r from-accent-light to-secondary-light dark:from-accent-dark dark:to-secondary-dark rounded-full opacity-15 filter blur-3xl"
+          animate={{
+            x: [0, 50, -50, 0],
+            y: [0, -30, 30, 0],
+            scale: [1, 1.3, 1.1, 1],
+            opacity: [0.15, 0.25, 0.15],
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-purple-400 dark:bg-purple-600 rounded-full opacity-10 filter blur-3xl"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+          className="absolute bottom-1/5 right-1/5 w-64 h-64 bg-gradient-to-r from-purple-400 to-blue-400 dark:from-purple-600 dark:to-blue-600 rounded-full opacity-10 filter blur-3xl"
+          animate={{
+            x: [-30, 30, -30, 0],
+            y: [20, -20, 20, 0],
+            scale: [1, 1.4, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        />
+        {/* Subtle Particle Effect */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{
+            backgroundImage: isDarkMode
+              ? ['radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05) 2px, transparent 2px)',
+                 'radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 2px, transparent 2px)']
+              : ['radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.05) 2px, transparent 2px)',
+                 'radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.05) 2px, transparent 2px)'],
+          }}
+          transition={{ duration: 10, repeat: Infinity, repeatType: 'reverse' }}
+          style={{
+            backgroundSize: '50px 50px',
+            opacity: 0.3,
+          }}
         />
       </div>
+
+      {/* Existing Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
         <motion.h1
           className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4"
@@ -111,7 +153,7 @@ const HeroSection = ({ isDarkMode }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Download CV <Download size={20} className="ml-2 group-hover:animate-pulse" />
+            Resume <Download size={20} className="ml-2 group-hover:animate-pulse" />
           </motion.a>
         </motion.div>
       </div>
