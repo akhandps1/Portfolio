@@ -7,22 +7,22 @@ const SkillsSection = ({ isDarkMode }) => {
     {
       category: "Languages & Core",
       icon: <Code size={32} className="text-accent-light dark:text-accent-dark" />,
-      items: ["JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3/Sass"]
+      items: ["JavaScript","HTML5", "CSS3"]
     },
     {
       category: "Frameworks & Libraries",
       icon: <Briefcase size={32} className="text-secondary-light dark:text-secondary-dark" />,
-      items: ["React", "Next.js", "Redux/Zustand", "Tailwind CSS", "Material UI", "Framer Motion"]
+      items: ["React","Tailwind CSS", "Material UI", "Framer Motion"]
     },
     {
       category: "Backend & Databases",
       icon: <Server size={32} className="text-teal-600 dark:text-teal-400" />,
-      items: ["Node.js", "Express.js", "Firebase", "MongoDB", "GraphQL"]
+      items: ["Node.js", "Express.js", "Firebase", "MongoDB", "SupaBase"]
     },
     {
       category: "Tools & Platforms",
       icon: <Settings size={32} className="text-purple-600 dark:text-purple-400" />,
-      items: ["Git & GitHub", "Vite", "Jest/RTL", "Docker", "VS Code", "Figma"]
+      items: ["Git & GitHub", "Vite", "Jest", "Docker", "Postman", "Figma"]
     }
   ];
 

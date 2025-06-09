@@ -11,7 +11,7 @@ const scrollToSection = (id) => {
 
 const HeroSection = ({ isDarkMode }) => {
   const [subtitle, setSubtitle] = useState('');
-  const subtitles = ["Frontend Developer", "React Enthusiast", "UI/UX Advocate", "Creative Coder"];
+  const subtitles = ["MERN Stack Developer", "React.js Enthusiast", "Full-Stack Web Developer", "API & UI Builder"];
   const [subtitleIndex, setSubtitleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -129,7 +129,7 @@ const HeroSection = ({ isDarkMode }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          Crafting pixel-perfect, interactive, and accessible web experiences with modern technologies.
+          Building full-stack web applications using React and Node.js with clean design and smooth performance.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6"
@@ -146,7 +146,7 @@ const HeroSection = ({ isDarkMode }) => {
             View My Work <Briefcase size={20} className="ml-2 group-hover:animate-bounce" />
           </motion.button>
           <motion.a
-            href="/path-to-your-cv.pdf"
+            href="akhandps1.github.io/resume-/"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 rounded-lg font-semibold border-2 border-secondary-light dark:border-secondary-dark text-secondary-light dark:text-secondary-dark hover:bg-secondary-light dark:hover:bg-secondary-dark hover:text-white dark:hover:text-slate-900 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center group"

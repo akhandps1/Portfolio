@@ -14,18 +14,18 @@ const ProjectModal = ({ project, onClose, isDarkMode }) => {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [onClose]);
 
-  // Manage body overflow
+  
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, []); // Empty dependency array to run only on mount/unmount
+  }, []); 
 
-  // Ensure overflow is reset when closing via onClose
+  
   const handleClose = () => {
-    document.body.style.overflow = 'unset'; // Explicitly reset overflow
-    onClose(); // Call the provided onClose function
+    document.body.style.overflow = 'unset'; 
+    onClose(); 
   };
 
   return (
@@ -33,7 +33,7 @@ const ProjectModal = ({ project, onClose, isDarkMode }) => {
       {project && (
         <motion.div
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1000] backdrop-blur-sm"
-          onClick={handleClose} // Use handleClose instead of onClose
+          onClick={handleClose} 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -47,7 +47,7 @@ const ProjectModal = ({ project, onClose, isDarkMode }) => {
             transition={{ duration: 0.3 }}
           >
             <motion.button
-              onClick={handleClose} // Use handleClose instead of onClose
+              onClick={handleClose} 
               className="absolute top-4 right-4 p-2 rounded-full text-slate-500 dark:text-slate-400 hover:text-accent-light dark:hover:text-accent-dark hover:bg-slate-200 dark:hover:bg-slate-700"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -79,7 +79,7 @@ const ProjectModal = ({ project, onClose, isDarkMode }) => {
                   href={project.liveLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium bg-slate-200 dark:bg-slate-700 text-accent-light dark:text-accent-dark hover:bg-accent-light dark:hover:bg-accent-dark hover:text-white"
+                  className="flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium bg-slate-200 dark:bg-slate-700 text-accent-light dark:text-accent-dark"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -91,7 +91,7 @@ const ProjectModal = ({ project, onClose, isDarkMode }) => {
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium bg-slate-200 dark:bg-slate-700 text-accent-light dark:text-accent-dark hover:bg-accent-light dark:hover:bg-accent-dark hover:text-white"
+                  className="flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium bg-slate-200 dark:bg-slate-700 text-accent-light dark:text-accent-dark"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

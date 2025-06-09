@@ -66,7 +66,7 @@ const AboutSection = ({ isDarkMode }) => {
 
       {/* Existing Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionTitle title="About Me" subtitle="My journey as a frontend developer" isDarkMode={isDarkMode} />
+        <SectionTitle title="🚀 About Me" subtitle="My journey as a MERN developer" isDarkMode={isDarkMode} />
         <div className="flex flex-col lg:flex-row items-center lg:space-x-12">
           <motion.div
             className="w-full lg:w-1/3 mb-8 lg:mb-0"
@@ -92,17 +92,13 @@ const AboutSection = ({ isDarkMode }) => {
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-2xl font-semibold mb-4 text-accent-light dark:text-accent-dark">
-              Hello! I'm Akhand.
+            Hi, I'm Akhand.
             </h3>
             <p className="text-lg text-slate-700 dark:text-slate-300 mb-4">
-              I'm a passionate Frontend Developer specializing in creating intuitive and visually stunning web applications. My journey began with a love for blending design and code, which has evolved into expertise in modern frameworks like React and Next.js.
-            </p>
-            <p className="text-lg text-slate-700 dark:text-slate-300 mb-4">
-              I excel at turning complex challenges into elegant solutions, leveraging <span className="text-secondary-light dark:text-secondary-dark">React, TypeScript, and Tailwind CSS</span> to build performant and accessible interfaces. I'm constantly exploring new tools and trends to stay at the forefront of web development.
-            </p>
+            I love building web applications using MongoDB, Express.js, React.js, and Node.js. I'm skilled in creating responsive user interfaces with React and Tailwind CSS, and building REST APIs using Node.js and Express.            </p>
+            
             <p className="text-lg text-slate-700 dark:text-slate-300">
-              Outside of coding, I enjoy contributing to open-source projects, experimenting with UI/UX design, and sipping coffee while ideating my next big project.
-            </p>
+            I'm always learning new technologies and improving my coding skills to build better, faster, and user-friendly web apps.            </p>
           </motion.div>
         </div>
       </div>

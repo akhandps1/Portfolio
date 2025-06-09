@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // Added AnimatePresence import
+import { motion, AnimatePresence } from 'framer-motion'; 
 import { Mail, Phone, Github, Linkedin, MessageSquare } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 
 const ContactSection = ({ isDarkMode }) => {
-  const CONTACT_EMAIL = "youremail@example.com";
-  const CONTACT_PHONE_NUMBER = "+1234567890";
+  const CONTACT_EMAIL = "akhandps2007@gmail.com";
+  const CONTACT_PHONE_NUMBER = "+91-9555228781";
   const SOCIAL_LINKS = [
-    { name: "GitHub", icon: Github, url: "https://github.com/yourusername", color: "hover:text-slate-700 dark:hover:text-slate-300" },
-    { name: "LinkedIn", icon: Linkedin, url: "https://linkedin.com/in/yourusername", color: "hover:text-accent-light dark:hover:text-accent-dark" },
+    { name: "GitHub", icon: Github, url: "github.com/AkhandPratapSingh", color: "hover:text-slate-700 dark:hover:text-slate-300" },
+    { name: "LinkedIn", icon: Linkedin, url: "linkedin.com/in/akhandps1/", color: "hover:text-accent-light dark:hover:text-accent-dark" },
   ];
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -24,7 +24,7 @@ const ContactSection = ({ isDarkMode }) => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Mock submission
+      await new Promise(resolve => setTimeout(resolve, 1500)); 
       console.log("Form data submitted:", formData);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
@@ -58,8 +58,8 @@ const ContactSection = ({ isDarkMode }) => {
           >
             <h3 className="text-2xl font-semibold mb-4 text-slate-800 dark:text-slate-100">Contact Information</h3>
             <p className="text-lg text-slate-700 dark:text-slate-300">
-              I'm excited to connect and discuss new projects, ideas, or opportunities. Reach out via email, phone, or social media!
-            </p>
+            I'm always open to new projects, collaborations, or opportunities in web development.
+            Feel free to reach out via email, LinkedIn, or GitHub — I'd love to connect! </p>
             <div className="space-y-4">
               <motion.a
                 href={`mailto:${CONTACT_EMAIL}`}

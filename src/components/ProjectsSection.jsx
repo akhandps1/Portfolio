@@ -4,7 +4,6 @@ import SectionTitle from './SectionTitle';
 import { useCallback } from 'react';
 
 const ProjectsSection = ({ isDarkMode, projects, onProjectClick }) => {
-  // Debounce onProjectClick to prevent rapid clicks
   const debouncedOnProjectClick = useCallback(
     (project) => {
       let timeoutId;
@@ -12,7 +11,7 @@ const ProjectsSection = ({ isDarkMode, projects, onProjectClick }) => {
         if (timeoutId) clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
           onProjectClick(project);
-        }, 300); // 300ms debounce
+        }, 300); 
       };
     },
     [onProjectClick]
@@ -94,7 +93,7 @@ const ProjectsSection = ({ isDarkMode, projects, onProjectClick }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }} // Added for touch feedback
+              whileTap={{ scale: 0.98 }} 
             >
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2 text-accent-light dark:text-accent-dark">{project.title}</h3>
@@ -107,7 +106,7 @@ const ProjectsSection = ({ isDarkMode, projects, onProjectClick }) => {
                         key={i}
                         className="px-2 py-1 rounded text-xs bg-slate-200 dark:bg-slate-700 text-secondary-light dark:text-secondary-dark"
                         whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }} // Added for touch feedback
+                        whileTap={{ scale: 0.95 }} 
                       >
                         {tech}
                       </motion.span>
@@ -127,7 +126,7 @@ const ProjectsSection = ({ isDarkMode, projects, onProjectClick }) => {
                   className="w-full text-sm font-medium py-2 px-4 rounded-md bg-accent-light/20 dark:bg-accent-dark/20 text-accent-light dark:text-accent-dark active:bg-accent-light/30 dark:active:bg-accent-dark/30 transition-colors flex items-center justify-center touch-none select-none"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  style={{ touchAction: 'manipulation' }} // Improve touch responsiveness
+                  style={{ touchAction: 'manipulation' }} 
                 >
                   View Details <ArrowUpRight size={16} className="ml-1" />
                 </motion.button>

@@ -58,22 +58,7 @@ function App() {
       liveLink: "#",
       githubLink: "#"
     },
-    {
-      title: "AI BlogCraft",
-      description: "A Next.js blogging platform with AI-assisted content creation and markdown support.",
-      fullDescription: "Created a modern blogging platform with markdown support, AI-assisted content drafting, and SEO optimization. Features a clean UI, comment system, and category filtering, built with Next.js for fast performance.\n\nCore Features:\n- Markdown editor with live preview\n- AI content suggestions\n- Commenting system\n- SEO-optimized structure",
-      technologies: ["Next.js", "React", "Markdown", "GraphQL", "Tailwind CSS", "AI API (mock)"],
-      liveLink: "#",
-      githubLink: "#"
-    },
-    {
-      title: "WeatherVibe Dashboard",
-      description: "An interactive weather app with real-time data and dynamic visualizations.",
-      fullDescription: "Designed a weather dashboard integrating the OpenWeatherMap API for real-time data and forecasts. Supports geolocation, animated weather icons, and temperature unit toggling, with a dynamic UI that adapts to conditions.\n\nKey Features:\n- Real-time weather updates\n- Geolocation support\n- 5-day forecast\n- Interactive charts",
-      technologies: ["React", "Axios", "OpenWeatherMap API", "CSS Modules", "Chart.js"],
-      liveLink: "#",
-      githubLink: "#"
-    },
+   
   ];
 
   return (
