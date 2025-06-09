@@ -7,8 +7,10 @@ const ContactSection = ({ isDarkMode }) => {
   const CONTACT_EMAIL = "akhandps2007@gmail.com";
   const CONTACT_PHONE_NUMBER = "+91-9555228781";
   const SOCIAL_LINKS = [
-    { name: "GitHub", icon: Github, url: "github.com/AkhandPratapSingh", color: "hover:text-slate-700 dark:hover:text-slate-300" },
-    { name: "LinkedIn", icon: Linkedin, url: "linkedin.com/in/akhandps1/", color: "hover:text-accent-light dark:hover:text-accent-dark" },
+    { name: "GitHub", icon: Github, url: "https://github.com/akhandps1",
+      color: "hover:text-slate-700 dark:hover:text-slate-300" },
+    { name: "LinkedIn", icon: Linkedin, url: "https://www.linkedin.com/in/akhandps1/",
+      color: "hover:text-accent-light dark:hover:text-accent-dark" },
   ];
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
