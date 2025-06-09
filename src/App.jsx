@@ -98,9 +98,9 @@ function App() {
       <ProjectModal project={selectedProject} onClose={handleCloseModal} isDarkMode={isDarkMode} />
       <ContactMeButton
         isDarkMode={isDarkMode}
-        email="youremail@example.com"
+        email="akhandps2007@gmail.com"
         subject="Portfolio Inquiry"
-        phoneNumber="+1234567890"
+        phoneNumber="+91-9555228781"
       />
     </div>
   );
