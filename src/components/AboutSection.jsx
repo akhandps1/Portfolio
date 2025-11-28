@@ -77,7 +77,7 @@ const AboutSection = ({ isDarkMode }) => {
           >
             <div className="glass-effect rounded-xl shadow-2xl overflow-hidden p-1.5">
               <img
-                src="https://i.postimg.cc/B6RnqcwR/profile.jpg"
+                src="/portfolio.jpg"
                 alt="Your Name"
                 className="w-full h-auto rounded-lg object-cover"
                 onError={(e) => { e.target.src = `https://placehold.co/400x400/${isDarkMode ? '1E293B/94A3B8' : 'F1F5F9/64748B'}?text=Error&font=Inter`; }}
